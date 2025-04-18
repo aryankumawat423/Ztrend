@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -33,7 +32,7 @@ const Navbar = () => {
       y: 0,
       transition: { 
         duration: 0.5,
-        ease: [0.6, 0.05, -0.01, 0.9] 
+        ease: [0.6, 0.05, 0.01, 0.9] 
       } 
     },
   };
@@ -81,7 +80,6 @@ const Navbar = () => {
           Aesthetic
         </motion.a>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
           {navItems.map((item, i) => (
             <motion.a
@@ -110,7 +108,6 @@ const Navbar = () => {
           </motion.button>
         </div>
 
-        {/* Mobile Menu Button */}
         <motion.button
           className="md:hidden text-white flex flex-col space-y-1.5 p-2"
           onClick={toggleMobileMenu}
@@ -129,7 +126,6 @@ const Navbar = () => {
         </motion.button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div

@@ -15,7 +15,7 @@ const ScrollIndicator = () => {
       duration: 1.5,
       repeat: -1,
       yoyo: true,
-      ease: 'power2.inOut',
+      ease: "power2.inOut",
     });
     
     // Fade out scroll indicator when scrolling
@@ -25,13 +25,13 @@ const ScrollIndicator = () => {
         gsap.to(indicatorRef.current, {
           opacity: 0,
           duration: 0.5,
-          ease: 'power2.out',
+          ease: "power2.out",
         });
       } else {
         gsap.to(indicatorRef.current, {
           opacity: 1,
           duration: 0.5,
-          ease: 'power2.out',
+          ease: "power2.out",
         });
       }
     };
@@ -52,7 +52,7 @@ const ScrollIndicator = () => {
         <motion.p 
           className="text-white/70 text-sm mb-2"
           animate={{ y: [0, 5, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
           Scroll Down
         </motion.p>

@@ -36,7 +36,7 @@ const TextAnimation = ({
             transition={{ 
               duration: 0.5, 
               delay: delay + (index * 0.05),
-              ease: [0.6, 0.05, -0.01, 0.9] 
+              ease: [0.6, 0.05, 0.01, 0.9] // Fixed: Changed -0.01 to 0.01
             }}
             className="inline-block"
           >
@@ -86,7 +86,7 @@ const TextAnimation = ({
       transition={{ 
         duration: 0.8, 
         delay,
-        ease: [0.6, 0.05, -0.01, 0.9] 
+        ease: [0.6, 0.05, 0.01, 0.9] // Fixed: Changed -0.01 to 0.01 
       }}
     >
       {text}

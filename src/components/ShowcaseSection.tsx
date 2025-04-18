@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
@@ -124,7 +123,7 @@ const ShowcaseSection = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: [0.6, 0.05, -0.01, 0.9],
+        ease: [0.6, 0.05, 0.01, 0.9],
       },
     },
     exit: (direction: number) => ({
@@ -132,7 +131,7 @@ const ShowcaseSection = () => {
       opacity: 0,
       transition: {
         duration: 0.8,
-        ease: [0.6, 0.05, -0.01, 0.9],
+        ease: [0.6, 0.05, 0.01, 0.9],
       },
     }),
   };

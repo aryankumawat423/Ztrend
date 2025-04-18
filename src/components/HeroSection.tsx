@@ -63,7 +63,7 @@ const HeroSection = () => {
       transition: { 
         delay: 0.1 * i,
         duration: 0.7,
-        ease: [0.6, 0.05, -0.01, 0.9]
+        ease: [0.6, 0.05, 0.01, 0.9] // Fixed: Changed -0.01 to 0.01
       }
     })
   };
