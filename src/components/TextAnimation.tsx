@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 
 interface TextAnimationProps {
@@ -18,7 +17,7 @@ const TextAnimation = ({
 }: TextAnimationProps) => {
   // Get the right CSS classes based on variant
   const variantClasses = {
-    gradient: 'gradient-text',
+    gradient: 'bg-gradient-to-r from-purple via-pink to-blue bg-clip-text text-transparent',
     regular: 'text-white',
     outline: 'text-transparent bg-clip-text border-white/30 border-2 p-2',
   };
@@ -31,14 +30,14 @@ const TextAnimation = ({
         {text.split('').map((char, index) => (
           <motion.span
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20, rotate: 10 }}
+            animate={{ opacity: 1, y: 0, rotate: 0 }}
             transition={{ 
               duration: 0.5, 
               delay: delay + (index * 0.05),
-              ease: [0.6, 0.05, 0.01, 0.9] // Fixed: Changed -0.01 to 0.01
+              ease: [0.6, 0.05, 0.01, 0.9]
             }}
-            className="inline-block"
+            className="inline-block hover:scale-110 transition-transform duration-200"
           >
             {char === ' ' ? '\u00A0' : char}
           </motion.span>
@@ -77,17 +76,19 @@ const TextAnimation = ({
     );
   }
   
-  // Default fadeIn animation
+  // Enhanced fadeIn animation
   return (
     <motion.div
       className={classNames}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ 
         duration: 0.8, 
         delay,
-        ease: [0.6, 0.05, 0.01, 0.9] // Fixed: Changed -0.01 to 0.01 
+        ease: [0.6, 0.05, 0.01, 0.9]
       }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
     >
       {text}
     </motion.div>
