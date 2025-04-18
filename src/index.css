@@ -93,9 +93,100 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    cursor: default;
   }
 
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-purple to-pink;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-br from-purple/80 via-pink/50 to-blue/80 animate-gradient-shift;
+    background-size: 200% 200%;
+  }
+  
+  .gradient-border {
+    @apply border border-transparent relative before:absolute before:inset-0 before:p-[1px] before:rounded-[inherit] before:bg-gradient-to-r before:from-purple before:to-pink-dark before:-z-10 before:content-[''];
+  }
+  
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg;
+  }
+  
+  .floating-element {
+    @apply animate-float;
+  }
+  
+  .bouncing-element {
+    @apply animate-bounce;
+  }
+  
+  .rotating-element {
+    @apply animate-rotate;
+  }
+  
+  .pulsing-element {
+    @apply animate-pulse;
+  }
+  
+  .fade-in {
+    @apply animate-fade-in;
+  }
+  
+  .scale-in {
+    @apply animate-scale-in;
+  }
+  
+  .slide-in {
+    @apply animate-slide-in-right;
+  }
+  
+  .parallax-section {
+    @apply relative overflow-hidden;
+  }
+  
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+  
+  .interactive-card {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
+  }
+  
+  .elastic-btn {
+    @apply transition-all duration-300 transform hover:scale-105 active:scale-95;
+  }
+  
+  .section-spacing {
+    @apply py-20 md:py-32;
+  }
+  
+  .hero-section {
+    @apply min-h-screen flex items-center;
+  }
+  
+  .fancy-link {
+    @apply relative text-purple hover:text-purple-dark transition-colors;
+  }
+  
+  .fancy-link:after {
+    content: '';
+    @apply absolute w-0 h-0.5 bg-gradient-to-r from-purple to-pink-dark left-0 -bottom-1 transition-all duration-300;
+  }
+  
+  .fancy-link:hover:after {
+    @apply w-full;
   }
 }
