@@ -159,7 +159,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-medium">Phone</h4>
-                    <p className="text-white/70">+1 (555) 123-4567</p>
+                    <p className="text-white/70">+91 93521 88532</p>
                   </div>
                 </motion.div>
                 
@@ -175,7 +175,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-medium">Email</h4>
-                    <p className="text-white/70">hello@aesthetic.com</p>
+                    <p className="text-white/70">ztrend.dakshkumawat@gmail.com</p>
                   </div>
                 </motion.div>
                 

@@ -1,30 +1,30 @@
-
 import { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import gsap from 'gsap';
+import AnimatedBackground from './AnimatedBackground';
 
 const features = [
   {
-    title: "Beautiful Design",
-    description: "Create stunning interfaces with our cutting-edge design elements and aesthetic visuals.",
+    title: "Brand Marketing",
+    description: "We make brands unforgettable — from the first impression to every interaction.",
     icon: "✨",
     color: "purple",
   },
   {
-    title: "Smooth Animations",
-    description: "Engage users with buttery-smooth animations and transitions that bring your site to life.",
+    title: "Branding (Visual Identity and  Positioning)",
+    description: "We don’t design logos, we build identities that speak before you do.",
     icon: "🌊",
     color: "pink",
   },
   {
-    title: "Responsive Layout",
-    description: "Build layouts that adapt perfectly to any device, from desktop to mobile.",
+    title: "Social Media Marketing",
+    description: "We turn scrolls into stops, likes into leads, and content into conversions.",
     icon: "📱",
     color: "blue",
   },
   {
-    title: "Performance Focused",
-    description: "Optimized for speed with efficient code and optimized resources for lightning-fast experiences.",
+    title: "Performance Strategic Marketing",
+    description: "We run campaigns that don’t just look good they sell harder and scale faster.",
     icon: "⚡",
     color: "purple",
   },
@@ -70,31 +70,44 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
 
 const FeaturesSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const circlesRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     if (!sectionRef.current) return;
-    
-    // Parallax scroll effect
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const sectionPos = sectionRef.current?.offsetTop || 0;
-      const distance = scrollPosition - sectionPos;
-      
-      if (distance > -500 && distance < 500) {
-        const elements = sectionRef.current?.querySelectorAll('.parallax-element');
-        elements?.forEach((el, i) => {
-          const speed = 1 - i * 0.1;
-          gsap.to(el, {
-            y: distance * speed * 0.1,
-            duration: 0.5,
-            ease: "power1.out"
-          });
+
+    // Floating circles animation
+    const circles = circlesRef.current?.querySelectorAll('.circle') || [];
+    circles.forEach((circle, index) => {
+      gsap.to(circle, {
+        y: `${Math.sin(index) * 30}px`,
+        x: `${Math.cos(index) * 30}px`,
+        duration: 2 + index * 0.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    });
+
+    // Parallax effect
+    const handleMouseMove = (e) => {
+      if (!circlesRef.current) return;
+
+      const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+      const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+
+      circles.forEach((circle, index) => {
+        const depth = 1 + (index * 0.1);
+        gsap.to(circle, {
+          x: moveX * depth,
+          y: moveY * depth,
+          duration: 1,
+          ease: "power1.out",
         });
-      }
+      });
     };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   const titleVariants = {
@@ -104,7 +117,7 @@ const FeaturesSection = () => {
       y: 0,
       transition: { 
         duration: 0.8,
-        ease: [0.6, 0.05, 0.01, 0.9] // Fixed: Changed -0.01 to 0.01
+        ease: [0.6, 0.05, 0.01, 0.9]
       }
     }
   };
@@ -124,13 +137,17 @@ const FeaturesSection = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="py-24 px-4 relative overflow-hidden bg-blue-dark/90"
+      className="relative min-h-screen overflow-hidden flex items-center justify-center gradient-bg py-24 px-4"
     >
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 z-0 opacity-10">
-        <div className="parallax-element absolute top-0 right-0 w-64 h-64 rounded-full bg-purple/30" />
-        <div className="parallax-element absolute bottom-0 left-0 w-80 h-80 rounded-full bg-pink/30" />
-        <div className="parallax-element absolute bottom-1/3 right-1/4 w-40 h-40 rounded-full bg-blue/30" />
+      <AnimatedBackground color="purple" density="high" speed="slow" />
+      
+      <div ref={circlesRef} className="absolute inset-0 z-0">
+        <div className="circle absolute top-1/4 left-[20%] w-32 h-32 rounded-full bg-purple/10 glass-card" />
+        <div className="circle absolute top-1/5 right-[25%] w-40 h-40 rounded-full bg-pink/10 glass-card" />
+        <div className="circle absolute bottom-1/4 left-[15%] w-48 h-48 rounded-full bg-blue/10 glass-card" />
+        <div className="circle absolute bottom-1/3 right-[10%] w-52 h-52 rounded-full bg-purple/10 glass-card" />
+        <div className="circle absolute top-[10%] left-[40%] w-24 h-24 rounded-full bg-blue/10 glass-card" />
+        <div className="circle absolute bottom-[15%] left-[45%] w-36 h-36 rounded-full bg-pink/10 glass-card" />
       </div>
       
       <div className="container mx-auto z-10 relative">
@@ -142,7 +159,7 @@ const FeaturesSection = () => {
             viewport={{ once: true, margin: "-100px" }}
             variants={titleVariants}
           >
-            Stunning Features
+            Here’s What We Do
           </motion.h2>
           
           <motion.div 
@@ -159,7 +176,7 @@ const FeaturesSection = () => {
             whileInView={{ opacity: 1, transition: { delay: 0.6, duration: 0.8 } }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            Our platform combines beautiful aesthetics with powerful functionality to create websites that stand out.
+            Our platform combines from branding to lead generation and mixes strategy with beautiful aesthetics to create websites that stand out.
           </motion.p>
         </div>
         

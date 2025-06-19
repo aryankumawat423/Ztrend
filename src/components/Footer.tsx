@@ -63,7 +63,7 @@ const Footer = () => {
               className="text-2xl font-bold gradient-text inline-block mb-6"
               whileHover={{ scale: 1.05 }}
             >
-              Aesthetic
+              Ztrend
             </motion.a>
             <p className="text-white/70 mb-6">
               Creating beautiful digital experiences with cutting-edge design and animation.
